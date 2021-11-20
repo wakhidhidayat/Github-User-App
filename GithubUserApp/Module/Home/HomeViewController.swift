@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import RxSwift
 
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var homeActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var usersTable: UITableView!
+    
+    private let disposeBag = DisposeBag()
     
     var users = [UserModel]()
     
@@ -28,21 +31,18 @@ class HomeViewController: UIViewController {
         homeActivityIndicator.startAnimating()
         
         let presenter = HomePresenter(useCase: Injection().provideHome())
-        presenter.getUsers { result in
-            switch result {
-            case .success(let value):
+        presenter.getUsers()
+            .observe(on: MainScheduler.instance)
+            .subscribe { result in
+                self.users = result
+            } onError: { error in
+                print(error.localizedDescription)
+            } onCompleted: {
                 DispatchQueue.main.async {
-                    self.homeActivityIndicator.stopAnimating()
-                    self.users = value
                     self.usersTable.reloadData()
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
                     self.homeActivityIndicator.stopAnimating()
-                    print(error.localizedDescription)
                 }
-            }
-        }
+            }.disposed(by: disposeBag)
     }
     
 }

@@ -8,11 +8,12 @@
 
 import Foundation
 import RealmSwift
+import RxSwift
 
 protocol LocaleDataSourceProtocol: AnyObject {
     
-    func getUsers(result: @escaping (Result<[UserEntity], DatabaseError>) -> Void)
-    func addUsers(from users: [UserEntity], result: @escaping (Result<Bool, DatabaseError>) -> Void)
+    func getUsers() -> Observable<[UserEntity]>
+    func addUsers(from users: [UserEntity]) -> Observable<Bool>
     
 }
 
@@ -30,31 +31,39 @@ final class LocaleDataSource: NSObject {
 
 extension LocaleDataSource: LocaleDataSourceProtocol {
     
-    func getUsers(result: @escaping (Result<[UserEntity], DatabaseError>) -> Void) {
-        if let realm = realm {
-            let users: Results<UserEntity> = {
-                realm.objects(UserEntity.self).sorted(byKeyPath: "id", ascending: true)
-            }()
-            result(.success(users.toArray(ofType: UserEntity.self)))
-        } else {
-            result(.failure(.invalidInstance))
+    func getUsers() -> Observable<[UserEntity]> {
+        return Observable<[UserEntity]>.create { observer in
+            if let realm = self.realm {
+                let users: Results<UserEntity> = {
+                    realm.objects(UserEntity.self).sorted(byKeyPath: "id", ascending: true)
+                }()
+                observer.onNext(users.toArray(ofType: UserEntity.self))
+                observer.onCompleted()
+            } else {
+                observer.onError(DatabaseError.invalidInstance)
+            }
+            return Disposables.create()
         }
     }
     
-    func addUsers(from users: [UserEntity], result: @escaping (Result<Bool, DatabaseError>) -> Void) {
-        if let realm = realm {
-            do {
-                try realm.write {
-                    for user in users {
-                        realm.add(user, update: .all)
+    func addUsers(from users: [UserEntity]) -> Observable<Bool> {
+        return Observable<Bool>.create { observer in
+            if let realm = self.realm {
+                do {
+                    try realm.write {
+                        for user in users {
+                            realm.add(user, update: .all)
+                        }
                     }
+                    observer.onNext(true)
+                    observer.onCompleted()
+                } catch {
+                    observer.onError(DatabaseError.requestFailed)
                 }
-                result(.success(true))
-            } catch {
-                result(.failure(.requestFailed))
+            } else {
+                observer.onError(DatabaseError.invalidInstance)
             }
-        } else {
-            result(.failure(.invalidInstance))
+            return Disposables.create()
         }
     }
     

@@ -10,4 +10,6 @@ target 'GithubUserApp' do
   pod 'Alamofire', '~> 5.4'
   pod 'Kingfisher', '~> 6.0'
   pod 'RealmSwift', '~> 10'
+  pod 'RxSwift', '~> 6.2.0'
+  pod 'RxCocoa', '~> 6.2.0'
 end

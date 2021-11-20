@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol HomeUseCase {
     
-    func getUsers(completion: @escaping (Result<[UserModel], Error>) -> Void)
+    func getUsers() -> Observable<[UserModel]>
     
 }
 
@@ -22,10 +23,8 @@ class HomeInteractor: HomeUseCase {
         self.repository = repository
     }
     
-    func getUsers(completion: @escaping (Result<[UserModel], Error>) -> Void) {
-        return repository.getUsers { result in
-            completion(result)
-        }
+    func getUsers() -> Observable<[UserModel]> {
+        return repository.getUsers()
     }
     
 }

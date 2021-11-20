@@ -8,10 +8,11 @@
 
 import Foundation
 import Alamofire
+import RxSwift
 
 protocol RemoteDataSourceProtocol: AnyObject {
     
-    func getUsers(result: @escaping (Result<[UserResponse], URLError>) -> Void)
+    func getUsers() -> Observable<[UserResponse]>
     
 }
 
@@ -25,19 +26,23 @@ final class RemoteDataSource: NSObject {
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
     
-    func getUsers(result: @escaping (Result<[UserResponse], URLError>) -> Void) {
-        if let url = URL(string: Endpoints.Gets.users.url) {
-            AF.request(url, headers: APICall.header)
-                .validate()
-                .responseDecodable(of: [UserResponse].self) { response in
-                    switch response.result {
-                    case .success(let users):
-                        return result(.success(users))
-                    case .failure(let error):
-                        print(error)
-                        return result(.failure(.invalidResponse))
+    func getUsers() -> Observable<[UserResponse]> {
+        return Observable<[UserResponse]>.create { observer in
+            if let url = URL(string: Endpoints.Gets.users.url) {
+                AF.request(url, headers: APICall.header)
+                    .validate()
+                    .responseDecodable(of: [UserResponse].self) { response in
+                        switch response.result {
+                        case .success(let users):
+                            observer.onNext(users)
+                            observer.onCompleted()
+                        case .failure(let error):
+                            print(error)
+                            observer.onError(URLError.invalidResponse)
+                        }
                     }
-                }
+            }
+            return Disposables.create()
         }
     }
     
