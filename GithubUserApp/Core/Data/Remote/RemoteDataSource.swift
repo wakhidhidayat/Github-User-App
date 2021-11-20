@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-protocol RemoteDataSourceProtocol: class {
+protocol RemoteDataSourceProtocol: AnyObject {
     
     func getUsers(result: @escaping (Result<[UserResponse], URLError>) -> Void)
     
