@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var usersTable: UITableView!
     
     private let disposeBag = DisposeBag()
-    
+    private let homeRouter = HomeRouter()
     var users = [UserModel]()
     
     override func viewDidLoad() {
@@ -27,6 +27,7 @@ class HomeViewController: UIViewController {
         )
         usersTable.dataSource = self
         usersTable.rowHeight = 120
+        usersTable.delegate = self
         
         homeActivityIndicator.startAnimating()
         
@@ -64,6 +65,15 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(120.0)
+    }
+    
+}
+
+extension HomeViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        homeRouter.moveToDetail(username: users[indexPath.row].username, navigationController: navigationController)
     }
     
 }

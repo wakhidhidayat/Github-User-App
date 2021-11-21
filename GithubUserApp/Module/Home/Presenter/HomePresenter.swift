@@ -18,8 +18,6 @@ protocol HomePresenterProtocol {
 class HomePresenter: HomePresenterProtocol {
     
     let useCase: HomeUseCase
-    var users = [UserModel]()
-    var errorMessage = ""
     
     init(useCase: HomeUseCase) {
         self.useCase = useCase

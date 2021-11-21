@@ -19,11 +19,7 @@ class HomeTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        avatarImage.layer.borderWidth = 1
-        avatarImage.layer.masksToBounds = false
-        avatarImage.layer.borderColor = UIColor.black.cgColor
-        avatarImage.layer.cornerRadius = avatarImage.frame.height/2
-        avatarImage.clipsToBounds = true
+        avatarImage.toCircleImage()
     }
     
     static func nib() -> UINib {

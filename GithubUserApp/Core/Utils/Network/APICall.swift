@@ -26,10 +26,14 @@ enum Endpoints {
     
     enum Gets: Endpoint {
         case users
+        case detailUser(username: String)
         
         public var url: String {
             switch self {
-            case .users: return "\(APICall.baseUrl)users"
+            case .users:
+                return "\(APICall.baseUrl)users"
+            case .detailUser(username: let username):
+                return "\(APICall.baseUrl)users/\(username)"
             }
         }
         

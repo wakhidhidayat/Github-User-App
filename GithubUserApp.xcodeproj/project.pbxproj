@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		15B39AD7FDC6E8F7B0A0D289 /* Pods_GithubUserApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B07F81DD2A0399049BEC781 /* Pods_GithubUserApp.framework */; };
+		3E61C4D8274A3D7000D58E98 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61C4D6274A3D7000D58E98 /* DetailViewController.swift */; };
+		3E61C4D9274A3D7000D58E98 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E61C4D7274A3D7000D58E98 /* DetailViewController.xib */; };
+		3E61C4DB274A4C6300D58E98 /* DetailUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61C4DA274A4C6300D58E98 /* DetailUserModel.swift */; };
+		3E61C4DD274A54DD00D58E98 /* DetailUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61C4DC274A54DD00D58E98 /* DetailUserResponse.swift */; };
+		3E61C4DF274A59BE00D58E98 /* DetailUserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61C4DE274A59BE00D58E98 /* DetailUserMapper.swift */; };
+		3E61C4E1274A5D2200D58E98 /* DetailUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61C4E0274A5D2200D58E98 /* DetailUserPresenter.swift */; };
+		3E61C4E3274A6BFE00D58E98 /* DetailUserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61C4E2274A6BFE00D58E98 /* DetailUserInteractor.swift */; };
+		3E61C4E5274A726F00D58E98 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61C4E4274A726F00D58E98 /* UIImageView+Ext.swift */; };
+		3E61C4EA274A74EF00D58E98 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61C4E9274A74EF00D58E98 /* HomeRouter.swift */; };
 		3E94957B274742F300D30659 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E94957A274742F300D30659 /* AppDelegate.swift */; };
 		3E94957D274742F300D30659 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E94957C274742F300D30659 /* SceneDelegate.swift */; };
 		3E949582274742F300D30659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E949580274742F300D30659 /* Main.storyboard */; };
@@ -32,6 +41,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E61C4D6274A3D7000D58E98 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		3E61C4D7274A3D7000D58E98 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		3E61C4DA274A4C6300D58E98 /* DetailUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserModel.swift; sourceTree = "<group>"; };
+		3E61C4DC274A54DD00D58E98 /* DetailUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserResponse.swift; sourceTree = "<group>"; };
+		3E61C4DE274A59BE00D58E98 /* DetailUserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserMapper.swift; sourceTree = "<group>"; };
+		3E61C4E0274A5D2200D58E98 /* DetailUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserPresenter.swift; sourceTree = "<group>"; };
+		3E61C4E2274A6BFE00D58E98 /* DetailUserInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserInteractor.swift; sourceTree = "<group>"; };
+		3E61C4E4274A726F00D58E98 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
+		3E61C4E9274A74EF00D58E98 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		3E949577274742F300D30659 /* GithubUserApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubUserApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E94957A274742F300D30659 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E94957C274742F300D30659 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +90,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E61C4D5274A3C8F00D58E98 /* Detail User */ = {
+			isa = PBXGroup;
+			children = (
+				3E61C4EC274A78F900D58E98 /* Presenter */,
+				3E61C4EB274A78E100D58E98 /* View */,
+			);
+			path = "Detail User";
+			sourceTree = "<group>";
+		};
+		3E61C4E6274A745100D58E98 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				3E61C4E9274A74EF00D58E98 /* HomeRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		3E61C4E7274A74B800D58E98 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E949595274750CC00D30659 /* HomeViewController.swift */,
+				3E9495972747527A00D30659 /* HomeTableViewCell.swift */,
+				3E9495982747527A00D30659 /* HomeTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3E61C4E8274A74BE00D58E98 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3E9495B627477EA500D30659 /* HomePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		3E61C4EB274A78E100D58E98 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E61C4D7274A3D7000D58E98 /* DetailViewController.xib */,
+				3E61C4D6274A3D7000D58E98 /* DetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3E61C4EC274A78F900D58E98 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3E61C4E0274A5D2200D58E98 /* DetailUserPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		3E94956E274742F300D30659 = {
 			isa = PBXGroup;
 			children = (
@@ -97,7 +167,6 @@
 				3E949591274744B800D30659 /* App */,
 				3E94959B274759A300D30659 /* Core */,
 				3E9495932747508E00D30659 /* Module */,
-				3E949580274742F300D30659 /* Main.storyboard */,
 				3E949592274744C600D30659 /* Supporting Files */,
 			);
 			path = GithubUserApp;
@@ -115,6 +184,7 @@
 		3E949592274744C600D30659 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3E949580274742F300D30659 /* Main.storyboard */,
 				3E949583274742F400D30659 /* Assets.xcassets */,
 				3E949585274742F400D30659 /* LaunchScreen.storyboard */,
 				3E949588274742F400D30659 /* Info.plist */,
@@ -125,6 +195,7 @@
 		3E9495932747508E00D30659 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				3E61C4D5274A3C8F00D58E98 /* Detail User */,
 				3E9495942747509B00D30659 /* Home */,
 			);
 			path = Module;
@@ -133,10 +204,9 @@
 		3E9495942747509B00D30659 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3E949595274750CC00D30659 /* HomeViewController.swift */,
-				3E9495972747527A00D30659 /* HomeTableViewCell.swift */,
-				3E9495982747527A00D30659 /* HomeTableViewCell.xib */,
-				3E9495B627477EA500D30659 /* HomePresenter.swift */,
+				3E61C4E8274A74BE00D58E98 /* Presenter */,
+				3E61C4E7274A74B800D58E98 /* View */,
+				3E61C4E6274A745100D58E98 /* Router */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -144,10 +214,10 @@
 		3E94959B274759A300D30659 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				3E9495B8274783DE00D30659 /* DI */,
-				3E9495A727475D3000D30659 /* Utils */,
 				3E9495A027475AFF00D30659 /* Data */,
+				3E9495B8274783DE00D30659 /* DI */,
 				3E94959C274759C400D30659 /* Domain */,
+				3E9495A727475D3000D30659 /* Utils */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -165,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				3E94959E27475A1A00D30659 /* UserModel.swift */,
+				3E61C4DA274A4C6300D58E98 /* DetailUserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				3E9495A327475B3800D30659 /* UserResponse.swift */,
+				3E61C4DC274A54DD00D58E98 /* DetailUserResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -210,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				3E9495A927475D5800D30659 /* CustomeError+Ext.swift */,
+				3E61C4E4274A726F00D58E98 /* UIImageView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -226,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				3E9495B12747782600D30659 /* UserMapper.swift */,
+				3E61C4DE274A59BE00D58E98 /* DetailUserMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -234,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				3E9495B427477B0D00D30659 /* HomeInteractor.swift */,
+				3E61C4E2274A6BFE00D58E98 /* DetailUserInteractor.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -342,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E94958F2747443400D30659 /* .swiftlint.yml in Resources */,
+				3E61C4D9274A3D7000D58E98 /* DetailViewController.xib in Resources */,
 				3E949587274742F400D30659 /* LaunchScreen.storyboard in Resources */,
 				3E949584274742F400D30659 /* Assets.xcassets in Resources */,
 				3E94959A2747527A00D30659 /* HomeTableViewCell.xib in Resources */,
@@ -416,14 +492,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E94957B274742F300D30659 /* AppDelegate.swift in Sources */,
+				3E61C4DB274A4C6300D58E98 /* DetailUserModel.swift in Sources */,
+				3E61C4DD274A54DD00D58E98 /* DetailUserResponse.swift in Sources */,
+				3E61C4D8274A3D7000D58E98 /* DetailViewController.swift in Sources */,
+				3E61C4E5274A726F00D58E98 /* UIImageView+Ext.swift in Sources */,
 				3E9495A627475C2B00D30659 /* RemoteDataSource.swift in Sources */,
 				3E94957D274742F300D30659 /* SceneDelegate.swift in Sources */,
+				3E61C4E3274A6BFE00D58E98 /* DetailUserInteractor.swift in Sources */,
 				3E9495B527477B0D00D30659 /* HomeInteractor.swift in Sources */,
 				3E9495992747527A00D30659 /* HomeTableViewCell.swift in Sources */,
+				3E61C4DF274A59BE00D58E98 /* DetailUserMapper.swift in Sources */,
 				3E9495B22747782600D30659 /* UserMapper.swift in Sources */,
 				3E94959F27475A1A00D30659 /* UserModel.swift in Sources */,
+				3E61C4EA274A74EF00D58E98 /* HomeRouter.swift in Sources */,
 				3E9495BA274783E700D30659 /* Injection.swift in Sources */,
 				3E949596274750CC00D30659 /* HomeViewController.swift in Sources */,
+				3E61C4E1274A5D2200D58E98 /* DetailUserPresenter.swift in Sources */,
 				3E9495A427475B3800D30659 /* UserResponse.swift in Sources */,
 				3E9495B727477EA500D30659 /* HomePresenter.swift in Sources */,
 				3E9495AA27475D5800D30659 /* CustomeError+Ext.swift in Sources */,

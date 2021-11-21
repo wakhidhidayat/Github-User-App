@@ -12,6 +12,7 @@ import RxSwift
 protocol UserRepositoryProtocol {
     
     func getUsers() -> Observable<[UserModel]>
+    func getDetailUser(username: String) -> Observable<DetailUserModel>
     
 }
 
@@ -48,4 +49,10 @@ extension UserRepository: UserRepositoryProtocol {
                         }
             )
     }
+    
+    func getDetailUser(username: String) -> Observable<DetailUserModel> {
+        return remoteDataSource.getDetailUser(username: username)
+            .map { DetailUserMapper.mapResponseToDomain(from: $0) }
+    }
+    
 }
