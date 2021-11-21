@@ -11,8 +11,19 @@ import Alamofire
 
 struct APICall {
     
+    private static var apiKey: String {
+        guard let filePath = Bundle.main.path(forResource: "APIToken-Info", ofType: "plist") else {
+            fatalError("Couldn't find file 'APIToken-Info.plist'.")
+        }
+        let plist = NSDictionary(contentsOfFile: filePath)
+        guard let value = plist?.object(forKey: "API_TOKEN") as? String else {
+            fatalError("Couldn't find key 'API_Token' in 'APITOKEN-Info.plist'.")
+        }
+        return value
+    }
+    
     static let baseUrl = "https://api.github.com/"
-    static let header: HTTPHeaders = ["Authorization": "token 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"]
+    static let header: HTTPHeaders = ["Authorization": "token \(apiKey)"]
     
 }
 
