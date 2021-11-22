@@ -15,6 +15,7 @@ protocol LocaleDataSourceProtocol: AnyObject {
     func getUsers() -> Observable<[UserEntity]>
     func addUsers(from users: [UserEntity]) -> Observable<Bool>
     func addToFavorites(user: DetailUserEntity) -> Observable<Bool>
+    func getFavorites() -> Observable<[DetailUserEntity]>
     
 }
 
@@ -80,6 +81,21 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
                 } catch {
                     observer.onError(DatabaseError.requestFailed)
                 }
+            } else {
+                observer.onError(DatabaseError.invalidInstance)
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func getFavorites() -> Observable<[DetailUserEntity]> {
+        return Observable<[DetailUserEntity]>.create { observer in
+            if let realm = self.realm {
+                let favorites: Results<DetailUserEntity> = {
+                    realm.objects(DetailUserEntity.self)
+                }()
+                observer.onNext(favorites.toArray(ofType: DetailUserEntity.self))
+                observer.onCompleted()
             } else {
                 observer.onError(DatabaseError.invalidInstance)
             }

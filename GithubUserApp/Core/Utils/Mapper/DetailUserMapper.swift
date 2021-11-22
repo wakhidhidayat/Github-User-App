@@ -36,4 +36,19 @@ final class DetailUserMapper: NSObject {
         return user
     }
     
+    static func mapArrayEntityToDomain(from usersEntity: [DetailUserEntity]) -> [DetailUserModel] {
+        return usersEntity.map { result in
+            return DetailUserModel(
+                id: result.id,
+                username: result.username,
+                avatarUrl: result.avatarUrl,
+                following: result.following,
+                followers: result.followers,
+                repos: result.repos,
+                location: result.location,
+                email: result.email
+            )
+        }
+    }
+    
 }

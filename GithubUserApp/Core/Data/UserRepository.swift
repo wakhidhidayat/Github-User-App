@@ -14,6 +14,7 @@ protocol UserRepositoryProtocol {
     func getUsers() -> Observable<[UserModel]>
     func getDetailUser(username: String) -> Observable<DetailUserModel>
     func addToFavorites(user: DetailUserModel) -> Observable<Bool>
+    func getFavorites() -> Observable<[DetailUserModel]>
     
 }
 
@@ -58,6 +59,11 @@ extension UserRepository: UserRepositoryProtocol {
     
     func addToFavorites(user: DetailUserModel) -> Observable<Bool> {
         return self.localeDataSource.addToFavorites(user: DetailUserMapper.mapDomainToEntity(from: user))
+    }
+    
+    func getFavorites() -> Observable<[DetailUserModel]> {
+        return localeDataSource.getFavorites()
+            .map { DetailUserMapper.mapArrayEntityToDomain(from: $0) }
     }
     
 }
