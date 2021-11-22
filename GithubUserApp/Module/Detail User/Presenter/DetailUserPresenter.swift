@@ -12,6 +12,7 @@ import RxSwift
 protocol DetailUserPresenterProtocol {
     
     func getDetailUser(username: String) -> Observable<DetailUserModel>
+    func addToFavorites(user: DetailUserModel) -> Observable<Bool>
     
 }
 
@@ -25,6 +26,10 @@ class DetailUserPresenter: DetailUserPresenterProtocol {
     
     func getDetailUser(username: String) -> Observable<DetailUserModel> {
         return useCase.getDetailUser(username: username)
+    }
+    
+    func addToFavorites(user: DetailUserModel) -> Observable<Bool> {
+        return useCase.addToFavorites(user: user)
     }
     
 }

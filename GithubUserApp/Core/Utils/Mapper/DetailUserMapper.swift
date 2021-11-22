@@ -15,13 +15,25 @@ final class DetailUserMapper: NSObject {
             id: userResponse.id,
             username: userResponse.username,
             avatarUrl: userResponse.avatarUrl,
-            name: userResponse.name,
             following: userResponse.following,
             followers: userResponse.followers,
             repos: userResponse.repos,
             location: userResponse.location,
             email: userResponse.email
         )
+    }
+    
+    static func mapDomainToEntity(from userModel: DetailUserModel) -> DetailUserEntity {
+        let user = DetailUserEntity()
+        user.id = userModel.id
+        user.username = userModel.username
+        user.avatarUrl = userModel.avatarUrl
+        user.following = userModel.following
+        user.followers = userModel.followers
+        user.repos = userModel.repos
+        user.location = userModel.location
+        user.email = userModel.email
+        return user
     }
     
 }

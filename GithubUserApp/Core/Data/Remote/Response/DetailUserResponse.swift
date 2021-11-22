@@ -13,7 +13,6 @@ struct DetailUserResponse: Decodable {
     let id: Int
     let username: String
     let avatarUrl: String
-    let name: String?
     let following: Int
     let followers: Int
     let repos: Int
@@ -24,7 +23,6 @@ struct DetailUserResponse: Decodable {
         case id
         case username = "login"
         case avatarUrl = "avatar_url"
-        case name
         case following
         case followers
         case repos = "public_repos"

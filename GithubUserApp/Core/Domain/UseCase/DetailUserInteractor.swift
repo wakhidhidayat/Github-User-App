@@ -12,6 +12,7 @@ import RxSwift
 protocol DetailUserUseCase {
     
     func getDetailUser(username: String) -> Observable<DetailUserModel>
+    func addToFavorites(user: DetailUserModel) -> Observable<Bool>
     
 }
 
@@ -25,6 +26,10 @@ class DetailUserInteractor: DetailUserUseCase {
     
     func getDetailUser(username: String) -> Observable<DetailUserModel> {
         return repository.getDetailUser(username: username)
+    }
+    
+    func addToFavorites(user: DetailUserModel) -> Observable<Bool> {
+        return repository.addToFavorites(user: user)
     }
     
 }

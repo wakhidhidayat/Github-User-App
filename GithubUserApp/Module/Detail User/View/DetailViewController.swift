@@ -22,6 +22,7 @@ class DetailViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private var user: DetailUserModel?
+    private  let presenter = DetailUserPresenter(useCase: Injection().provideDetailUser())
     var username = ""
     
     override func viewDidLoad() {
@@ -29,10 +30,6 @@ class DetailViewController: UIViewController {
         
         avatarImage.toCircleImage()
         avatarImage.kf.indicatorType = .activity
-        
-        let presenter = DetailUserPresenter(
-            useCase: Injection().provideDetailUser()
-        )
         
         detailActivityIndicator.startAnimating()
         
@@ -58,9 +55,44 @@ class DetailViewController: UIViewController {
                         self.locationLabel.text = user.location ?? "Unknown"
                         self.emailLabel.text = user.email ?? "Unknown"
                         self.detailActivityIndicator.stopAnimating()
+                        self.setButtonAddToFavorites()
                     }
                 }
             }.disposed(by: disposeBag)
+    }
+    
+    @objc private func addToFavorites() {
+        if let user = user {
+            presenter.addToFavorites(user: user)
+                .observe(on: MainScheduler.instance)
+                .subscribe { result in
+                    print(result)
+                } onError: { error in
+                    print(error.localizedDescription)
+                } onCompleted: {
+                    print("Success added to favorites")
+                }.disposed(by: disposeBag)
+        }
+    }
+    
+    @objc private func removeFromFavorites(userId: Int) {
+        
+    }
+    
+    private func setButtonAddToFavorites() {
+        let addToFavoritesButton = UIBarButtonItem(
+            image: UIImage(systemName: "suit.heart"), style: .plain,
+            target: self, action: #selector(self.addToFavorites)
+        )
+        self.navigationItem.rightBarButtonItem = addToFavoritesButton
+    }
+    
+    private func setButtonRemoveFromFavorites() {
+        let removeFromFavoritesButton = UIBarButtonItem(
+            image: UIImage(systemName: "suit.heart.fill"),
+            style: .plain, target: self, action: #selector(self.removeFromFavorites)
+        )
+        self.navigationItem.rightBarButtonItem = removeFromFavoritesButton
     }
     
 }
