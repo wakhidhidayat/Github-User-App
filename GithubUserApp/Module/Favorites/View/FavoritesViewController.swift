@@ -16,7 +16,7 @@ class FavoritesViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private var favorites = [DetailUserModel]()
-    private let favoritePresenter = FavoritePresenter(useCase: Injection().provideFavorites())
+    var presenter: FavoritePresenterProtocol!
     private let favoriteRouter = FavoriteRouter()
     
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class FavoritesViewController: UIViewController {
         
         activityIndicator.startAnimating()
         
-        favoritePresenter.getFavorites()
+        presenter.getFavorites()
             .observe(on: MainScheduler.instance)
             .subscribe { result in
                 self.favorites = result

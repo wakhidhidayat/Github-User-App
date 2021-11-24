@@ -14,6 +14,7 @@ class HomeRouter {
         let detailVC = DetailViewController(nibName: "DetailViewController", bundle: nil)
         detailVC.username = username
         detailVC.isInFavorites = isInFavorites
+        detailVC.presenter = DetailUserPresenter(useCase: Injection().provideDetailUser())
         navigationController?.pushViewController(detailVC, animated: true)
     }
     

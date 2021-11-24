@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private var user: DetailUserModel?
-    private  let presenter = DetailUserPresenter(useCase: Injection().provideDetailUser())
+    var presenter: DetailUserPresenterProtocol!
     var username = ""
     var isInFavorites = false
     

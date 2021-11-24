@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private let homeRouter = HomeRouter()
-    private let presenter = HomePresenter(useCase: Injection().provideHome())
+    var presenter: HomePresenterProtocol!
     var users = [UserModel]()
     
     override func viewDidLoad() {
