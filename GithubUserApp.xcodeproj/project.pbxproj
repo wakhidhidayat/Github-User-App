@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		15B39AD7FDC6E8F7B0A0D289 /* Pods_GithubUserApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B07F81DD2A0399049BEC781 /* Pods_GithubUserApp.framework */; };
+		3E3637E3274DC5FF00FE9A96 /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3637E2274DC5FF00FE9A96 /* FavoriteRouter.swift */; };
+		3E3637E6274DCBF300FE9A96 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3637E5274DCBF300FE9A96 /* Alert.swift */; };
 		3E61C4D8274A3D7000D58E98 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61C4D6274A3D7000D58E98 /* DetailViewController.swift */; };
 		3E61C4D9274A3D7000D58E98 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E61C4D7274A3D7000D58E98 /* DetailViewController.xib */; };
 		3E61C4DB274A4C6300D58E98 /* DetailUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61C4DA274A4C6300D58E98 /* DetailUserModel.swift */; };
@@ -48,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E3637E2274DC5FF00FE9A96 /* FavoriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouter.swift; sourceTree = "<group>"; };
+		3E3637E5274DCBF300FE9A96 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		3E61C4D6274A3D7000D58E98 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3E61C4D7274A3D7000D58E98 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		3E61C4DA274A4C6300D58E98 /* DetailUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserModel.swift; sourceTree = "<group>"; };
@@ -104,6 +108,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E3637E1274DC5EF00FE9A96 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				3E3637E2274DC5FF00FE9A96 /* FavoriteRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		3E3637E4274DCBDB00FE9A96 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3E3637E5274DCBF300FE9A96 /* Alert.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		3E61C4D5274A3C8F00D58E98 /* Detail User */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +307,7 @@
 		3E9495A727475D3000D30659 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3E3637E4274DCBDB00FE9A96 /* UI */,
 				3E9495B02747781900D30659 /* Mapper */,
 				3E9495AB27475F7400D30659 /* Network */,
 				3E9495A827475D3500D30659 /* Extensions */,
@@ -359,6 +380,7 @@
 		3E9B45AC274B4294005BDEAE /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				3E3637E1274DC5EF00FE9A96 /* Router */,
 				3E9B45B6274B5326005BDEAE /* Presenter */,
 				3E9B45AD274B42AA005BDEAE /* View */,
 			);
@@ -550,6 +572,7 @@
 				3E94957D274742F300D30659 /* SceneDelegate.swift in Sources */,
 				3E61C4E3274A6BFE00D58E98 /* DetailUserInteractor.swift in Sources */,
 				3E9495B527477B0D00D30659 /* HomeInteractor.swift in Sources */,
+				3E3637E6274DCBF300FE9A96 /* Alert.swift in Sources */,
 				3E9495992747527A00D30659 /* HomeTableViewCell.swift in Sources */,
 				3E61C4DF274A59BE00D58E98 /* DetailUserMapper.swift in Sources */,
 				3E9B45B2274B43DE005BDEAE /* FavoriteTableViewCell.swift in Sources */,
@@ -558,6 +581,7 @@
 				3E61C4EA274A74EF00D58E98 /* HomeRouter.swift in Sources */,
 				3E9495BA274783E700D30659 /* Injection.swift in Sources */,
 				3E949596274750CC00D30659 /* HomeViewController.swift in Sources */,
+				3E3637E3274DC5FF00FE9A96 /* FavoriteRouter.swift in Sources */,
 				3E61C4E1274A5D2200D58E98 /* DetailUserPresenter.swift in Sources */,
 				3E9495A427475B3800D30659 /* UserResponse.swift in Sources */,
 				3E9495B727477EA500D30659 /* HomePresenter.swift in Sources */,

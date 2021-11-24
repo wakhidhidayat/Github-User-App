@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private let homeRouter = HomeRouter()
+    private let presenter = HomePresenter(useCase: Injection().provideHome())
     var users = [UserModel]()
     
     override func viewDidLoad() {
@@ -31,7 +32,6 @@ class HomeViewController: UIViewController {
         
         homeActivityIndicator.startAnimating()
         
-        let presenter = HomePresenter(useCase: Injection().provideHome())
         presenter.getUsers()
             .observe(on: MainScheduler.instance)
             .subscribe { result in
@@ -73,7 +73,23 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        homeRouter.moveToDetail(username: users[indexPath.row].username, navigationController: navigationController)
+        
+        var isInFavorites = false
+        presenter.checkUserIsInFavorites(userId: users[indexPath.row].id)
+            .observe(on: MainScheduler.instance)
+            .subscribe { result in
+                isInFavorites = result
+            } onError: { error in
+                print(error.localizedDescription)
+            } onCompleted: {
+                print(isInFavorites)
+            }.disposed(by: disposeBag)
+        
+        homeRouter.moveToDetail(
+            username: users[indexPath.row].username,
+            navigationController: navigationController,
+            isInFavorites: isInFavorites
+        )
     }
     
 }

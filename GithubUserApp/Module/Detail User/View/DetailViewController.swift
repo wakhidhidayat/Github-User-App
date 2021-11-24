@@ -24,6 +24,7 @@ class DetailViewController: UIViewController {
     private var user: DetailUserModel?
     private  let presenter = DetailUserPresenter(useCase: Injection().provideDetailUser())
     var username = ""
+    var isInFavorites = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,12 @@ class DetailViewController: UIViewController {
                         self.locationLabel.text = user.location ?? "Unknown"
                         self.emailLabel.text = user.email ?? "Unknown"
                         self.detailActivityIndicator.stopAnimating()
-                        self.setButtonAddToFavorites()
+                        
+                        if self.isInFavorites {
+                            self.setButtonRemoveFromFavorites()
+                        } else {
+                            self.setButtonAddToFavorites()
+                        }
                     }
                 }
             }.disposed(by: disposeBag)
@@ -70,13 +76,35 @@ class DetailViewController: UIViewController {
                 } onError: { error in
                     print(error.localizedDescription)
                 } onCompleted: {
-                    print("Success added to favorites")
+                    self.isInFavorites = true
+                    self.setButtonRemoveFromFavorites()
+                    self.present(
+                        Alert.basicAlert(title: "Added to favorites", message: nil),
+                        animated: true,
+                        completion: nil
+                    )
                 }.disposed(by: disposeBag)
         }
     }
     
     @objc private func removeFromFavorites(userId: Int) {
-        
+        if let user = user {
+            presenter.deleteUser(user: user)
+                .observe(on: MainScheduler.instance)
+                .subscribe { result in
+                    print(result)
+                } onError: { error in
+                    print(error.localizedDescription)
+                } onCompleted: {
+                    self.isInFavorites = false
+                    self.setButtonAddToFavorites()
+                    self.present(
+                        Alert.basicAlert(title: "Removed from favorites", message: nil),
+                        animated: true,
+                        completion: nil
+                    )
+                }.disposed(by: disposeBag)
+        }
     }
     
     private func setButtonAddToFavorites() {

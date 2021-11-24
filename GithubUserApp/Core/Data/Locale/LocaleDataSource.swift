@@ -16,6 +16,8 @@ protocol LocaleDataSourceProtocol: AnyObject {
     func addUsers(from users: [UserEntity]) -> Observable<Bool>
     func addToFavorites(user: DetailUserEntity) -> Observable<Bool>
     func getFavorites() -> Observable<[DetailUserEntity]>
+    func checkUserIsInFavorites(userId: Int) -> Observable<Bool>
+    func deleteUser(user: DetailUserEntity) -> Observable<Bool>
     
 }
 
@@ -96,6 +98,46 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
                 }()
                 observer.onNext(favorites.toArray(ofType: DetailUserEntity.self))
                 observer.onCompleted()
+            } else {
+                observer.onError(DatabaseError.invalidInstance)
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func checkUserIsInFavorites(userId: Int) -> Observable<Bool> {
+        return Observable<Bool>.create { observer in
+            if let realm = self.realm {
+                var isInFavorites = false
+                let users: Results<DetailUserEntity> = {
+                    realm.objects(DetailUserEntity.self).sorted(byKeyPath: "id", ascending: true)
+                }()
+                
+                for user in users where user.id == userId {
+                    isInFavorites = true
+                }
+                
+                observer.onNext(isInFavorites)
+                observer.onCompleted()
+            } else {
+                observer.onError(DatabaseError.invalidInstance)
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func deleteUser(user: DetailUserEntity) -> Observable<Bool> {
+        return Observable<Bool>.create { observer in
+            if let realm = self.realm {
+                do {
+                    try realm.write {
+                        realm.delete(realm.object(ofType: DetailUserEntity.self, forPrimaryKey: user.id)!)
+                    }
+                    observer.onNext(true)
+                    observer.onCompleted()
+                } catch {
+                    observer.onError(DatabaseError.requestFailed)
+                }
             } else {
                 observer.onError(DatabaseError.invalidInstance)
             }

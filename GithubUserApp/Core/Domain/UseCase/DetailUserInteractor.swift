@@ -13,6 +13,7 @@ protocol DetailUserUseCase {
     
     func getDetailUser(username: String) -> Observable<DetailUserModel>
     func addToFavorites(user: DetailUserModel) -> Observable<Bool>
+    func deleteUser(user: DetailUserModel) -> Observable<Bool>
     
 }
 
@@ -30,6 +31,10 @@ class DetailUserInteractor: DetailUserUseCase {
     
     func addToFavorites(user: DetailUserModel) -> Observable<Bool> {
         return repository.addToFavorites(user: user)
+    }
+    
+    func deleteUser(user: DetailUserModel) -> Observable<Bool> {
+        return repository.deleteUser(user: user)
     }
     
 }

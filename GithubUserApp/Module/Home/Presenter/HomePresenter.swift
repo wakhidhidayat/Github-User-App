@@ -12,7 +12,7 @@ import RxSwift
 protocol HomePresenterProtocol {
     
     func getUsers() -> Observable<[UserModel]>
-    
+    func checkUserIsInFavorites(userId: Int) -> Observable<Bool>
 }
 
 class HomePresenter: HomePresenterProtocol {
@@ -26,4 +26,9 @@ class HomePresenter: HomePresenterProtocol {
     func getUsers() -> Observable<[UserModel]> {
         return useCase.getUsers()
     }
+    
+    func checkUserIsInFavorites(userId: Int) -> Observable<Bool> {
+        return useCase.checkUserIsInFavorites(userId: userId)
+    }
+    
 }

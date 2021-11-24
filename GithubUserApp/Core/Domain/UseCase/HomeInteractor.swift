@@ -12,6 +12,7 @@ import RxSwift
 protocol HomeUseCase {
     
     func getUsers() -> Observable<[UserModel]>
+    func checkUserIsInFavorites(userId: Int) -> Observable<Bool>
     
 }
 
@@ -25,6 +26,10 @@ class HomeInteractor: HomeUseCase {
     
     func getUsers() -> Observable<[UserModel]> {
         return repository.getUsers()
+    }
+    
+    func checkUserIsInFavorites(userId: Int) -> Observable<Bool> {
+        return repository.checkUserIsInFavorites(userId: userId)
     }
     
 }

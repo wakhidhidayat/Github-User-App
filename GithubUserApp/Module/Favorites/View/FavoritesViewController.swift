@@ -17,6 +17,7 @@ class FavoritesViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var favorites = [DetailUserModel]()
     private let favoritePresenter = FavoritePresenter(useCase: Injection().provideFavorites())
+    private let favoriteRouter = FavoriteRouter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,4 +73,13 @@ extension FavoritesViewController: UITableViewDataSource {
 }
 
 extension FavoritesViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        favoriteRouter.moveToDetail(
+            username: favorites[indexPath.row].username,
+            navigationController: navigationController
+        )
+    }
+    
 }

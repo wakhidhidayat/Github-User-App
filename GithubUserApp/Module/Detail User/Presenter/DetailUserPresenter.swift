@@ -13,6 +13,7 @@ protocol DetailUserPresenterProtocol {
     
     func getDetailUser(username: String) -> Observable<DetailUserModel>
     func addToFavorites(user: DetailUserModel) -> Observable<Bool>
+    func deleteUser(user: DetailUserModel) -> Observable<Bool>
     
 }
 
@@ -30,6 +31,10 @@ class DetailUserPresenter: DetailUserPresenterProtocol {
     
     func addToFavorites(user: DetailUserModel) -> Observable<Bool> {
         return useCase.addToFavorites(user: user)
+    }
+    
+    func deleteUser(user: DetailUserModel) -> Observable<Bool> {
+        return useCase.deleteUser(user: user)
     }
     
 }
